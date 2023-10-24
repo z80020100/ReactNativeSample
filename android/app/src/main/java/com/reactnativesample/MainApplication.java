@@ -1,5 +1,7 @@
 package com.reactnativesample;
 
+import android.util.Log;
+
 import android.app.Application;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
@@ -11,6 +13,8 @@ import com.facebook.soloader.SoLoader;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
+
+  private static final String TAG = "ReactNativeSample";
 
   private final ReactNativeHost mReactNativeHost = new DefaultReactNativeHost(this) {
     @Override
@@ -50,6 +54,7 @@ public class MainApplication extends Application implements ReactApplication {
 
   @Override
   public void onCreate() {
+    Log.d(TAG, "MainApplication.onCreate()");
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
     if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {

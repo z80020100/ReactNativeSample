@@ -8,6 +8,8 @@
 import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {
+  Button,
+  NativeModules,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -63,6 +65,8 @@ function App(): JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const {NativeModuleImpl} = NativeModules;
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
@@ -77,6 +81,15 @@ function App(): JSX.Element {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
+          <Section title="Test Native Module">
+            <Button
+              title="Click"
+              onPress={() => {
+                console.log('onPress() on TypeScript side');
+                NativeModuleImpl.log('onPress() on Native side');
+              }}
+            />
+          </Section>
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
